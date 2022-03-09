@@ -21,8 +21,8 @@ import {
           justify={{ base: 'center', md: 'space-between' }}
           align={{ base: 'center', md: 'center' }}>
           <Stack direction={'row'} spacing={6}>
-            <Link href={'#'}>Home</Link>
-            <Link href={'#'}>Leaderboard</Link>
+            <Link href={'/'}>Home</Link>
+            <Link href={'/leaderboard'}>Leaderboard</Link>
           </Stack>
           <Text>© 2020 card-concentration. All rights reserved</Text>
         </Container>
