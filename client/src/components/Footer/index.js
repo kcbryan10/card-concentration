@@ -24,7 +24,7 @@ import {
             <Link href={'#'}>Home</Link>
             <Link href={'#'}>Leaderboard</Link>
           </Stack>
-          <Text>© 2020 Chakra Templates. All rights reserved</Text>
+          <Text>© 2020 card-concentration. All rights reserved</Text>
         </Container>
       </Box>
     );
