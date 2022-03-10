@@ -15,6 +15,7 @@ const playerSchema = new Schema(
     }
 )
 
+
 playerSchema.pre('save', async function(next) {
     if (this.isNew || this.isModified('password')) {
         const saltRounds= 10;

@@ -20,4 +20,4 @@ const typeDefs = gql `
         login(username: String!, password: String!): Auth
         signupPlayer(username: String!, password: String!): Auth
     }
-`
+`;
