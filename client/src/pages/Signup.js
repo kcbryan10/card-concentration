@@ -33,6 +33,16 @@ export default function SignupCard() {
 
   const [signupPlayer, { error }] = useMutation(SIGNUP_PLAYER);
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -66,20 +76,21 @@ export default function SignupCard() {
           bg={useColorModeValue('white', 'gray.700')}
           boxShadow={'lg'}
           p={8}>
-          <Stack spacing={4}>
+          <Stack spacing={4}>\
+          <form onSubmit={handleSubmit}>
             <HStack>
               <Box>
-
                 <FormControl id="username" isRequired>
                   <FormLabel>Username</FormLabel>
-                  <Input type="text" />
+                  <Input type="text" onChange={handleChange}/>
                 </FormControl>
               </Box>
             </HStack>
+
             <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <InputGroup>
-                <Input type={showPassword ? 'text' : 'password'} />
+                <Input type={showPassword ? 'text' : 'password'} onChange={handleChange} />
                 <InputRightElement h={'full'}>
                   <Button
                     variant={'ghost'}
@@ -95,6 +106,7 @@ export default function SignupCard() {
             <Stack spacing={10} pt={2}>
               <Button
                 loadingText="Submitting"
+                type="submit"
                 size="lg"
                 bg={'blue.400'}
                 color={'white'}
@@ -104,9 +116,10 @@ export default function SignupCard() {
                 Sign up
               </Button>
             </Stack>
+            </form>
             <Stack pt={6}>
               <Text align={'center'}>
-                Already a user? <Link color={'blue.400'}>Login</Link>
+                Already a user? <Link color={'blue.400'} href='/login'>Login</Link>
               </Text>
             </Stack>
           </Stack>
