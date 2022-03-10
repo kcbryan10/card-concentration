@@ -11,5 +11,13 @@ const typeDefs = gql `
         player: Player
     }
 
-    
+    type Query {
+        users: [User]
+        user(username: String!): User
+    }
+
+    type Mutation {
+        lohin(username: String!, password: String!): Auth
+        signupPlayer(username: String!, password: String!): Auth
+    }
 `
