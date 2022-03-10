@@ -1,12 +1,19 @@
-const {Player} = require('../models')
+const { Player } = require('../models')
 
 const resolvers = {
-   Mutation: {
-       signupPlayer: async (parent, args) => {
-           const user = await Player.create(args);
-           const token = signToken(Player)
+    Query: {
+        user: async (parent, { username }) => {
+            return Player.findOne({ username })
+                .select('-__v -password')
+        }
+    },
 
-           return {token, user};
-       }
-   }
+    Mutation: {
+        signupPlayer: async (parent, args) => {
+            const player = await Player.create(args);
+            const token = signToken(Player)
+
+            return { token, player };
+        }
+    }
 }

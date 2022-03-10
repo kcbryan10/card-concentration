@@ -12,12 +12,12 @@ const typeDefs = gql `
     }
 
     type Query {
-        users: [User]
-        user(username: String!): User
+        players: [Player]
+        player(username: String!): Player
     }
 
     type Mutation {
-        lohin(username: String!, password: String!): Auth
+        login(username: String!, password: String!): Auth
         signupPlayer(username: String!, password: String!): Auth
     }
 `
