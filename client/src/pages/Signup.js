@@ -16,9 +16,15 @@ import {
   } from '@chakra-ui/react';
   import { useState } from 'react';
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+
+  import React, {useState} from 'react';
+  import {useMutation} from '@apollo/client';
+  import {SIGNUP_PLAYER} from "../utils/mutations";
+
   
   export default function SignupCard() {
     const [showPassword, setShowPassword] = useState(false);
+
   
     return (
       <Flex
