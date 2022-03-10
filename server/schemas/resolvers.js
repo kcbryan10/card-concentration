@@ -2,7 +2,7 @@ const { Player } = require('../models')
 
 const resolvers = {
     Query: {
-        user: async (parent, { username }) => {
+        player: async (parent, { username }) => {
             return Player.findOne({ username })
                 .select('-__v -password')
         }
