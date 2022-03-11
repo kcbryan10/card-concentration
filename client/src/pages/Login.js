@@ -1,41 +1,83 @@
 import {
-    Flex,
-    Box,
-    FormControl,
-    FormLabel,
-    Input,
-    Checkbox,
-    Stack,
-    Link,
-    Button,
-    Heading,
-    Text,
-    useColorModeValue,
-  } from '@chakra-ui/react';
-  
-  export default function SimpleCard() {
-    return (
-      <Flex
-        minH={'100vh'}
-        align={'center'}
-        justify={'center'}
-        bg={useColorModeValue('gray.50', 'gray.800')}>
-        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-          <Stack align={'center'}>
-            <Heading fontSize={'4xl'}>Sign in to your account</Heading>
-            <Text fontSize={'lg'} color={'gray.600'}>
-              to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
-            </Text>
-          </Stack>
-          <Box
-            rounded={'lg'}
-            bg={useColorModeValue('white', 'gray.700')}
-            boxShadow={'lg'}
-            p={8}>
-            <Stack spacing={4}>
-              <FormControl id="email">
-                <FormLabel>Email address</FormLabel>
-                <Input type="email" />
+  Flex,
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Checkbox,
+  Stack,
+  Link,
+  Button,
+  Heading,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
+
+import React, { useState } from 'react';
+import { LOGIN_PLAYER } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
+
+import Auth from '../utils/auth';
+
+const Login = () => {
+
+  const [formState, setFormState] = useState({
+    username: '',
+    password: '',
+  });
+  const [login, { error }] = useMutation(LOGIN_PLAYER);
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.loginPlayer.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  return (
+    <Flex
+      minH={'100vh'}
+      align={'center'}
+      justify={'center'}
+      bg={useColorModeValue('gray.50', 'gray.800')}>
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+        <Stack align={'center'}>
+          <Heading fontSize={'4xl'}>Log In</Heading>
+        </Stack>
+        <Box
+          rounded={'lg'}
+          bg={useColorModeValue('white', 'gray.700')}
+          boxShadow={'lg'}
+          p={8}>
+          <Stack spacing={4}>
+            <form onSubmit={handleSubmit}>
+              <FormControl id="username">
+                <FormLabel>Username</FormLabel>
+                <Input
+                  name="username"
+                  type="username"
+                  id="username"
+                  value={formState.username}
+                  onChange={handleChange}
+                />
               </FormControl>
               <FormControl id="password">
                 <FormLabel>Password</FormLabel>
@@ -58,9 +100,12 @@ import {
                   Sign in
                 </Button>
               </Stack>
-            </Stack>
-          </Box>
-        </Stack>
-      </Flex>
-    );
-  }
+            </form>
+          </Stack>
+        </Box>
+      </Stack >
+    </Flex >
+  );
+}
+
+export default Login;
