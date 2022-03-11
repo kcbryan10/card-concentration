@@ -2,7 +2,7 @@
 
 ## Description
 
-## This application was designed to connect people with common interests across a variety of subjects.
+## This application was for people to play the card game concentration and post scores online.
 
 ## Table of Contents
 
