@@ -16,16 +16,28 @@ const Main = () => {
   const [rounds, setRounds] = useState(0)
   const [selectOne, setOne] = useState(null)
   const [selectTwo, setTwo] = useState(null)
+  const [disabled, setDisabled] = useState(false)
 
- 
+
   useEffect(() => {
     if (selectOne && selectTwo) {
-      if(selectOne.src === selectTwo.src) {
-        console.log('they match!')
-        cycleRound()
+      setDisabled(true)
+      if (selectOne.src === selectTwo.src) {
+        setCards(prevCards => {
+          return prevCards.map(card => {
+            if (card.src === selectOne.src) {
+              return { ...card, matched: true }
+            } else {
+              return card
+            }
+          }
+          )
+        })
+        cycleRound();
+
       } else {
-        console.log('no match!')
-        cycleRound()
+
+        setTimeout(() => cycleRound(), 500)
       }
     }
   }, [selectOne, selectTwo])
@@ -46,7 +58,8 @@ const Main = () => {
   const cycleRound = () => {
     setOne(null)
     setTwo(null)
-    setRounds(prevRounds => prevRounds +1)
+    setRounds(prevRounds => prevRounds + 1)
+    setDisabled(false)
   }
 
   return (
@@ -54,10 +67,15 @@ const Main = () => {
       <div className='main'>
         <div>
           <h1>Card Concentration</h1>
-          <button onClick={shuffle}>Play Again</button>
+          <button className='play-button' onClick={shuffle}>Play!</button>
           <div className='game'>
             {cards.map(card => (
-              <Card key={card.id} card={card} handleSelect={handleSelect}/>
+              <Card key={card.id}
+                card={card}
+                handleSelect={handleSelect}
+                flipped={card === selectOne || card === selectTwo || card.matched}
+                disabled={disabled}
+              />
             ))}
           </div>
           <div />

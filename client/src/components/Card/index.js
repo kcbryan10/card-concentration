@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const Card = ({ card, handleSelect }) => {
+const Card = ({ card, handleSelect, flipped, disabled}) => {
 
     const click = () => {
-        handleSelect(card)
+        if(!disabled) {
+            handleSelect(card)
+        }   
     }
 
     return (
         <div className='card'>
-            <div>
+            <div className={flipped ? "flipped" : ""}>
                 <img className='icon' src={card.src} />
-                <img className='card-background' src="/img/1129018.jpg" onClick={click}/>
+                <img className='card-background' src="/img/black-square.png" onClick={click}/>
             </div>
         </div>
     );
