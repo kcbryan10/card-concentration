@@ -67,7 +67,7 @@ const Main = () => {
       <div className='main'>
         <div>
           <h1>Card Concentration</h1>
-          <button className='play-button' onClick={shuffle}>Play!</button>
+          <h3>Rounds: {rounds}</h3>
           <div className='game'>
             {cards.map(card => (
               <Card key={card.id}
@@ -80,6 +80,7 @@ const Main = () => {
           </div>
           <div />
         </div>
+        <button className='play-button' onClick={shuffle}>Play!</button>
       </div>
     </main>
   );
