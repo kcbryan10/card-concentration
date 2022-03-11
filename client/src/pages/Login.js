@@ -25,8 +25,8 @@ const Login = () => {
     username: '',
     password: '',
   });
-  const [login, { error }] = useMutation(LOGIN_PLAYER);
 
+  const [login, { error }] = useMutation(LOGIN_PLAYER);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (event) => {
@@ -46,10 +46,15 @@ const Login = () => {
         variables: { ...formState },
       });
 
-      Auth.login(data.loginPlayer.token);
+      Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
     }
+
+    setFormState({
+      username: "",
+      password: "",
+    })
   };
 
   return (
@@ -81,7 +86,13 @@ const Login = () => {
               </FormControl>
               <FormControl id="password">
                 <FormLabel>Password</FormLabel>
-                <Input type="password" />
+                <Input
+                    name="password"
+                    type="password"
+                    id="password"
+                    value={formState.password}
+                    onChange={handleChange}
+                  />
               </FormControl>
               <Stack spacing={10}>
                 <Stack
@@ -92,12 +103,15 @@ const Login = () => {
                   <Link color={'blue.400'}>Forgot password?</Link>
                 </Stack>
                 <Button
+                  loadingText="Submitting"
+                  type="submit"
+                  size="lg"
                   bg={'blue.400'}
                   color={'white'}
                   _hover={{
                     bg: 'blue.500',
                   }}>
-                  Sign in
+                  Log In
                 </Button>
               </Stack>
             </form>

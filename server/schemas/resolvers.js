@@ -21,7 +21,7 @@ const resolvers = {
 
             return { token, player };
         },
-        login: async (parent, {password}) => {
+        login: async (parent, {username, password}) => {
             const player = await Player.findOne({username});
 
             if (!player) {
@@ -36,7 +36,7 @@ const resolvers = {
 
             const token = signToken(player)
 
-            return {token, user};
+            return {token, player};
         }
     }
 }

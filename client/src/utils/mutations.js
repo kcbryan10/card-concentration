@@ -11,3 +11,15 @@ export const SIGNUP_PLAYER = gql`
         }
     }
 `;
+
+export const LOGIN_PLAYER = gql`
+    mutation login($username: String!, $password: String!) {
+        login(username: $username, password: $password) {
+            token
+            player {
+                _id 
+                username
+            }
+        }
+    }
+`
