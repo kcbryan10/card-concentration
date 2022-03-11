@@ -1,9 +1,13 @@
 import React from 'react';
 
-const Main= () => {  
+const Main = () => {
   return (
-    <main>
-      <div/>
+    <main className='game-page'>
+      <div className='main'>
+        <h1>Card Concentration</h1>
+        <button>Play Again</button>
+        <div />
+      </div>
     </main>
   );
 };

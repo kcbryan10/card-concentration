@@ -1,3 +1,32 @@
 .page {
     margin: 100px;
 }
+
+.main {
+    max-width: 860px;
+    margin: 40px auto;
+}
+
+.game-page {
+    font-family: sans-serif;
+    margin: 0;
+    font-size: 1.5em;
+    text-align: center;
+    background-color: grey;
+    color: black;
+}
+
+.game-button {
+    background: none;
+    border: 2px solid #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.game-button:hover {
+    background: red;
+    color: #fff;
+}
