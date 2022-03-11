@@ -21,3 +21,5 @@ const typeDefs = gql `
         signupPlayer(username: String!, password: String!): Auth
     }
 `;
+
+module.exports = typeDefs;
