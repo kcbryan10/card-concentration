@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+import Auth from '../utils/auth';
+
 import Card from '../components/Card';
 
 const cardImg = [
@@ -17,6 +19,8 @@ const Main = () => {
   const [selectOne, setOne] = useState(null)
   const [selectTwo, setTwo] = useState(null)
   const [disabled, setDisabled] = useState(false)
+
+  const loggedIn = Auth.loggedIn();
 
 
   useEffect(() => {
@@ -71,24 +75,27 @@ const Main = () => {
 
   return (
     <main className='game-page'>
-      <div className='main'>
-        <div>
-          <h1>Card Concentration</h1>
-          <h3>Rounds: {rounds}</h3>
-          <div className='game'>
-            {cards.map(card => (
-              <Card key={card.id}
-                card={card}
-                handleSelect={handleSelect}
-                flipped={card === selectOne || card === selectTwo || card.matched}
-                disabled={disabled}
-              />
-            ))}
-          </div>
-          <div />
-        </div>
-        <button className='play-button' onClick={shuffle}>Play!</button>
-      </div>
+              <div className='main'>
+              <div>
+                <h1>Card Concentration</h1>
+                <h3>Rounds: {rounds}</h3>
+                 {loggedIn && (
+                   <button className='submit-score'> Submit score</button>
+                 )}
+                <div className='game'>
+                  {cards.map(card => (
+                    <Card key={card.id}
+                      card={card}
+                      handleSelect={handleSelect}
+                      flipped={card === selectOne || card === selectTwo || card.matched}
+                      disabled={disabled}
+                    />
+                  ))}
+                </div>
+                <div />
+              </div>
+              <button className='play-button' onClick={shuffle}>Play!</button>
+            </div>
     </main>
   );
 };

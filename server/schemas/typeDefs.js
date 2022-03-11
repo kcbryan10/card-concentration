@@ -11,6 +11,10 @@ const typeDefs = gql `
         player: Player
     }
 
+    type Scores {
+        
+    }
+
     type Query {
         players: [Player]
         player(username: String!): Player
