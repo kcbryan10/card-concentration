@@ -7,7 +7,6 @@
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
 - [Collaborators](#collaborators)
 - [License](#license)
 
