@@ -47,6 +47,8 @@ const Main = () => {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }))
 
+    setOne(null)
+    setTwo(null)
     setCards(shuffled)
     setRounds(0)
   }
@@ -61,6 +63,11 @@ const Main = () => {
     setRounds(prevRounds => prevRounds + 1)
     setDisabled(false)
   }
+
+  useEffect(() => {
+    shuffle()
+  }, [])
+
 
   return (
     <main className='game-page'>
