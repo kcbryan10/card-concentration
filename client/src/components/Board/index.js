@@ -1,11 +1,13 @@
 import React from "react";
 
-const Board = () => {
+const Board = ({player, score}) => {
     return (
-        <div>
-            Board
+        <div id="container">
+            <div class="row">
+                <div class="name">Player: {player.username}</div> <div class="score"> Score: {score}</div>
+            </div>
         </div>
-    )
+    );
 }
 
 export default Board;

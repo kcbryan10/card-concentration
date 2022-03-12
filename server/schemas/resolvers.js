@@ -1,4 +1,4 @@
-const { Player } = require('../models')
+const { Player, Score } = require('../models')
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -11,6 +11,10 @@ const resolvers = {
         players: async () => {
             return Player.find()
             .select('-__v -password')
+        },
+
+        score: async () => {
+            return Score.find()
         }
     },
 
@@ -37,6 +41,9 @@ const resolvers = {
             const token = signToken(player)
 
             return {token, player};
+        },
+        submitScore: async (parent, {username}) => {
+            await Score.findByIdAndUpdate
         }
     }
 }

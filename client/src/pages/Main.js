@@ -72,6 +72,10 @@ const Main = () => {
     shuffle()
   }, [])
 
+  const submitScore = () => {
+
+  }
+
 
   return (
     <main className='game-page'>
@@ -80,7 +84,7 @@ const Main = () => {
                 <h1>Card Concentration</h1>
                 <h3>Rounds: {rounds}</h3>
                  {loggedIn && (
-                   <button className='submit-score'> Submit score</button>
+                   <button className='submit-score' onclick={submitScore}> Submit score</button>
                  )}
                 <div className='game'>
                   {cards.map(card => (
