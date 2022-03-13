@@ -8,3 +8,13 @@ export const QUERY_PLAYER = gql`
         }
     }
 `
+
+export const QUERY_SCORES = gql `
+    query scores($username: String) {
+        scores(username: $username) {
+            _id
+            username
+            score
+        }
+    }
+`

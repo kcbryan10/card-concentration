@@ -42,8 +42,18 @@ const resolvers = {
 
             return {token, player};
         },
-        submitScore: async (parent, {username}) => {
-            await Score.findByIdAndUpdate
+        submitScore: async (parent, args, context) => {
+            if (context.player) {
+                const score = await Score.create({...args, username: context.player.username});
+
+                await Player.findByIdAndUpdate(
+                    {_id: context.player._id},
+                    {$push: {scores: score._id}},
+                    {new: true}
+                );
+
+                return score;
+            }
         }
     }
 }

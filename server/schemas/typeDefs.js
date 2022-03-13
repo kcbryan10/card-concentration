@@ -15,7 +15,7 @@ const typeDefs = gql `
     type Score {
         _id: ID
         username: String
-        score: Int
+        score: String
     }
 
     type Query {
@@ -28,7 +28,7 @@ const typeDefs = gql `
     type Mutation {
         login(username: String!, password: String!): Auth
         signupPlayer(username: String!, password: String!): Auth
-        submitScore(score: Int!): Score
+        submitScore(score: String!): Score
     }
 `;
 
